@@ -24,10 +24,10 @@ export const Header = () => {
         <Styled.Cart src="/images/icon-cart.svg" />
 
         <Styled.Avatar src="/images/image-avatar.png" />
-        <Styled.Basket>
+        {/* <Styled.Basket>
           <Styled.Display>Cart</Styled.Display>
           <Styled.BasketListBox></Styled.BasketListBox>
-        </Styled.Basket>
+        </Styled.Basket> */}
       </Styled.Box>
     </Styled.Container>
   )
