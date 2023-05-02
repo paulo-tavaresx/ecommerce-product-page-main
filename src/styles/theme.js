@@ -15,6 +15,9 @@ export const theme = {
   },
   media: {
     mobile: '(max-width: 768px)',
-    desktop: '(min-width: 769px)',
+    laptop: '(min-width: 769px)',
+    largeLaptop: '(min-width: 1080px)',
+    desktop: '(min-width: 1200px)',
+    largeDesktop: '(min-width: 1500px)',
   },
 }

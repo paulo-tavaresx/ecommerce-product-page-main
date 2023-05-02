@@ -21,7 +21,7 @@ export const Container = styled.div`
     box-shadow: 0.1rem 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
 
     ${basketVisible && cartBasketVisible()}
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       width: 36rem;
     }
   `}

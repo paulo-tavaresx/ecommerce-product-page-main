@@ -27,12 +27,15 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: ;
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       border-radius: 2rem;
       max-width: 44.5rem;
       > ${ArrowPrevious}, > ${ArrowNext} {
         display: none;
       }
+    }
+    @media ${theme.media.largeDesktop} {
+      max-width: 55.5rem;
     }
   `}
 `
@@ -77,7 +80,7 @@ export const ArrowNext = styled.img`
 export const Trumbnails = styled.div`
   ${({ theme }) => css`
     display: none;
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       margin-top: 3rem;
       max-width: 44.5rem;
       display: grid;
@@ -85,11 +88,16 @@ export const Trumbnails = styled.div`
       gap: 2.8rem;
       grid-template-columns: repeat(auto-fill, 9rem);
     }
+
+    @media ${theme.media.largeDesktop} {
+      max-width: 55.5rem;
+      grid-template-columns: repeat(auto-fill, 10rem);
+    }
   `}
 `
 export const Trumbnail = styled.div`
   ${({ theme, backgroundImage, active }) => css`
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       border-radius: 0.8rem;
       width: 100%;
       height: 9rem;
@@ -105,6 +113,10 @@ export const Trumbnail = styled.div`
         opacity: 0.5;
       }
       ${active && isActive()}
+    }
+
+    @media ${theme.media.largeDesktop} {
+      height: 10rem;
     }
   `}
 `
@@ -136,7 +148,7 @@ export const LightBoxContainer = styled.div`
       z-index: 1;
       background-color: rgba(0, 0, 0, 0.75);
     }
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       ${lightBoxVisible && setlightBoxVisible()}
       display:flex;
 
@@ -155,6 +167,9 @@ export const LightBoxContainer = styled.div`
         right: 0;
         transform: translate(50%, -50%);
       }
+    }
+    @media ${theme.media.largeDesktop} {
+      max-width: 60rem;
     }
     ${Trumbnail} {
       z-index: 3;

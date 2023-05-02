@@ -35,10 +35,16 @@ export const Container = styled.header`
     width: 100%;
     max-width: 111rem;
 
-    @media ${theme.media.desktop} {
-      padding: 3rem 0.5rem 3.5rem;
+    @media ${theme.media.laptop} {
+      padding: 3rem 2.5rem 3.5rem;
       border-bottom: 1px solid ${theme.colors.neutral.lightGrayingBlue};
       gap: 6rem;
+    }
+    @media ${theme.media.desktop} {
+      padding: 3rem 0.5rem 3.5rem;
+    }
+    @media ${theme.media.largeDesktop} {
+      max-width: 130rem;
     }
   `}
 `
@@ -48,7 +54,7 @@ export const Menu = styled.img`
     display: block;
     z-index: 5;
     cursor: pointer;
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       display: none;
     }
   `}
@@ -72,7 +78,7 @@ export const NavLinks = styled.ul`
     @media ${theme.media.mobile} {
       ${menuVisible && setMenuVisible(theme)}
     }
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       display: flex;
       opacity: 1;
       visibility: visible;
@@ -83,7 +89,7 @@ export const NavItem = styled.li`
   ${({ theme }) => css`
     position: relative;
     transition: 0.5s ease-in-out;
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       &:hover {
         &::before {
           content: '';
@@ -107,7 +113,7 @@ export const Box = styled.div`
     gap: 2.5rem;
     position: relative;
 
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       gap: 4.5rem;
     }
   `}
@@ -138,7 +144,7 @@ export const Avatar = styled.img`
     cursor: pointer;
     transition: 0.5s ease-in-out;
 
-    @media ${theme.media.desktop} {
+    @media ${theme.media.laptop} {
       width: 5rem;
       &:hover {
         border-color: ${theme.colors.primary.orange};
