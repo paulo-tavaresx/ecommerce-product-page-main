@@ -1,33 +1,63 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import * as Styled from './styles'
+import { Basket } from '../Basket'
+import { context } from '../../contexts/CartProvider/context'
+import { Image } from '../Image'
+import { Container } from '../Container'
 
 export const Header = () => {
-  const [isVisible, setVisible] = useState(false)
+  const [menuVisible, setmenuVisible] = useState(false)
+  const [cartVisible, setCartVisible] = useState(false)
+  const { productsInCart } = useContext(context)
+  let counterProductsInCart = productsInCart
+    .reduce((currentValue, { quantity }) => currentValue + quantity, 0)
+    .toString()
+
   return (
     <Styled.Container>
       <Styled.Menu
-        onClick={() => setVisible(!isVisible)}
-        src={isVisible ? '/images/icon-close.svg' : '/images/icon-menu.svg'}
+        onClick={() => setmenuVisible(!menuVisible)}
+        src={menuVisible ? '/images/icon-close.svg' : '/images/icon-menu.svg'}
       />
       <Styled.Archor href="#">
-        <Styled.Logo src="/images/logo.svg" />
+        <Styled.Logo src="/images/logo.svg" alt="logo" />
       </Styled.Archor>
-      <Styled.NavLinks>
-        <Styled.Archor href="#">Collections</Styled.Archor>
-        <Styled.Archor href="#">Men</Styled.Archor>
-        <Styled.Archor href="#">Women</Styled.Archor>
-        <Styled.Archor href="#">About</Styled.Archor>
-        <Styled.Archor href="#">Contact</Styled.Archor>
-      </Styled.NavLinks>
+      <Container as={'nav'}>
+        <Styled.NavLinks menuVisible={menuVisible}>
+          <Styled.NavItem>
+            <Styled.Archor href="#">Collections</Styled.Archor>
+          </Styled.NavItem>
+          <Styled.NavItem>
+            <Styled.Archor href="#">Men</Styled.Archor>
+          </Styled.NavItem>
+          <Styled.NavItem>
+            <Styled.Archor href="#">Women</Styled.Archor>
+          </Styled.NavItem>
+          <Styled.NavItem>
+            <Styled.Archor href="#">About</Styled.Archor>
+          </Styled.NavItem>
+          <Styled.NavItem>
+            <Styled.Archor href="#">Contact</Styled.Archor>
+          </Styled.NavItem>
+        </Styled.NavLinks>
+      </Container>
 
       <Styled.Box>
-        <Styled.Cart src="/images/icon-cart.svg" />
+        <Styled.CartContainer>
+          {counterProductsInCart > 0 && (
+            <Styled.DisplayQuantityInCart>
+              {counterProductsInCart}
+            </Styled.DisplayQuantityInCart>
+          )}
+          <Image
+            onClick={() => setCartVisible(!cartVisible)}
+            srcImg="/images/icon-cart.svg"
+            alt="cart"
+          />
+        </Styled.CartContainer>
 
-        <Styled.Avatar src="/images/image-avatar.png" />
-        {/* <Styled.Basket>
-          <Styled.Display>Cart</Styled.Display>
-          <Styled.BasketListBox></Styled.BasketListBox>
-        </Styled.Basket> */}
+        <Styled.Avatar src="/images/image-avatar.png" alt="avatar" />
+        <Basket cartVisible={cartVisible} />
       </Styled.Box>
     </Styled.Container>
   )

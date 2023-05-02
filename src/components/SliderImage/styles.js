@@ -16,7 +16,7 @@ const isActive = () => css`
     cursor: none;
   }
 `
-const lightBoxVisible = () => css`
+const setlightBoxVisible = () => css`
   opacity: 1;
   visibility: visible;
 `
@@ -110,7 +110,7 @@ export const Trumbnail = styled.div`
 `
 
 export const LightBoxContainer = styled.div`
-  ${({ theme, visible }) => css`
+  ${({ theme, lightBoxVisible }) => css`
     position: fixed;
     left: 50%;
     top: 50%;
@@ -137,7 +137,7 @@ export const LightBoxContainer = styled.div`
       background-color: rgba(0, 0, 0, 0.75);
     }
     @media ${theme.media.desktop} {
-      ${visible && lightBoxVisible()}
+      ${lightBoxVisible && setlightBoxVisible()}
       display:flex;
 
       & > ${ArrowPrevious}, > ${ArrowNext} {

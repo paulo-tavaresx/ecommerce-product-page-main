@@ -1,5 +1,29 @@
 import styled, { css } from 'styled-components'
 
+const setMenuVisible = (theme) => css`
+  opacity: 1;
+  visibility: visible;
+  z-index: 4;
+  position: absolute;
+  transition: opacity 0.5s ease-in-out;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 9rem 3.5rem;
+  width: 25rem;
+  height: 100vh;
+  z-index: 3;
+  background-color: ${theme.colors.neutral.white};
+
+  & ${Archor} {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #000;
+  }
+`
+
 export const Container = styled.header`
   ${({ theme }) => css`
     margin: 0 auto;
@@ -22,31 +46,55 @@ export const Container = styled.header`
 export const Menu = styled.img`
   ${({ theme }) => css`
     display: block;
+    z-index: 5;
     cursor: pointer;
-
     @media ${theme.media.desktop} {
       display: none;
     }
   `}
 `
-
 export const Logo = styled.img``
 
 export const Archor = styled.a`
   ${() => css`
     font-size: 1.6rem;
+    z-index: index 6;
   `}
 `
-export const NavLinks = styled.nav`
-  ${({ theme }) => css`
+export const NavLinks = styled.ul`
+  ${({ theme, menuVisible }) => css`
+    opacity: 0;
+    visibility: hidden;
     display: none;
-    flex-direction:column
+    list-style-type: none;
     cursor: pointer;
     column-gap: 3.5rem;
-
+    @media ${theme.media.mobile} {
+      ${menuVisible && setMenuVisible(theme)}
+    }
     @media ${theme.media.desktop} {
       display: flex;
-      flex-direction: row;
+      opacity: 1;
+      visibility: visible;
+    }
+  `}
+`
+export const NavItem = styled.li`
+  ${({ theme }) => css`
+    position: relative;
+    transition: 0.5s ease-in-out;
+    @media ${theme.media.desktop} {
+      &:hover {
+        &::before {
+          content: '';
+          position: absolute;
+          top: 6.5rem;
+          left: 0;
+          width: 100%;
+          height: 0.5rem;
+          background-color: ${theme.colors.primary.orange};
+        }
+      }
     }
   `}
 `
@@ -64,49 +112,37 @@ export const Box = styled.div`
     }
   `}
 `
-
-export const Cart = styled.img`
+export const CartContainer = styled.div`
   cursor: pointer;
-  width: 2rem;
-  height: 2rem;
+  position: relative;
+`
+export const DisplayQuantityInCart = styled.span`
+  ${({ theme }) => css`
+    position: absolute;
+    width: 2rem;
+    left: 50%;
+    top: -0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: ${theme.colors.primary.orange};
+    color: ${theme.colors.neutral.white};
+    border-radius: 8rem;
+  `}
 `
 
 export const Avatar = styled.img`
   ${({ theme }) => css`
-    width: 2.5rem;
+    width: 2.6rem;
+    border: 2px solid transparent;
+    border-radius: 50%;
     cursor: pointer;
+    transition: 0.5s ease-in-out;
 
     @media ${theme.media.desktop} {
       width: 5rem;
+      &:hover {
+        border-color: ${theme.colors.primary.orange};
+      }
     }
-  `}
-`
-
-export const Basket = styled.div`
-  ${({ theme }) => css`
-    position: absolute;
-    width: 33.5rem;
-    border-radius: 0.8rem;
-    right: -1.5rem;
-    top: 6rem;
-    margin: 0 auto 0 0;
-    z-index: 1;
-    background-color: purple;
-    background-color: ${theme.colors.neutral.white};
-    box-shadow: 0.1rem 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
-  `}
-`
-
-export const Display = styled.p`
-  ${({ theme }) => css`
-    padding: 2.5rem 2.5rem 3rem;
-    font-weight: 700;
-    border-bottom: 1px solid ${theme.colors.neutral.lightGrayingBlue};
-  `}
-`
-
-export const BasketListBox = styled.div`
-  ${() => css`
-    padding: 2.5rem 2.5rem 3rem;
   `}
 `

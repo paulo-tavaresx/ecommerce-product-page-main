@@ -4,49 +4,50 @@ import { useState } from 'react'
 
 export const SliderImage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [lightboxVisible, setLightboxVisible] = useState(false)
+  const [lightBoxVisible, setLightBoxVisible] = useState(false)
 
   function handleArrowNext() {
-    setCurrentImageIndex((previewIndex) => {
-      if (previewIndex + 1 === imagesList.length) {
+    setCurrentImageIndex((previousIndex) => {
+      if (previousIndex + 1 === imagesList.length) {
         return 0
       } else {
-        return previewIndex + 1
+        return previousIndex + 1
       }
     })
   }
 
   function handleArrowPrevious() {
-    setCurrentImageIndex((previewIndex) => {
-      if (previewIndex - 1 < 0) {
+    setCurrentImageIndex((previousIndex) => {
+      if (previousIndex - 1 < 0) {
         return imagesList.length - 1
       } else {
-        return previewIndex - 1
+        return previousIndex - 1
       }
     })
   }
 
   function handleTrumbanail(index) {
-    setCurrentImageIndex((previewIndex) => {
-      if (previewIndex !== index) {
-        return index
-      } else {
-        return previewIndex
-      }
-    })
+    if (currentImageIndex !== index) {
+      setCurrentImageIndex(index)
+    }
   }
 
   return (
     <Styled.Container>
       <Styled.DisplayImage
-        onClick={() => setLightboxVisible(true)}
+        onClick={() => setLightBoxVisible(true)}
         src={imagesList[currentImageIndex]}
       />
       <Styled.ArrowPrevious
         onClick={handleArrowPrevious}
         src="/images/icon-previous.svg"
+        alt="previous image arrow"
       />
-      <Styled.ArrowNext onClick={handleArrowNext} src="/images/icon-next.svg" />
+      <Styled.ArrowNext
+        onClick={handleArrowNext}
+        src="/images/icon-next.svg"
+        alt="next image arrow"
+      />
 
       <Styled.Trumbnails>
         {imagesList.map((srcImg, index) => (
@@ -59,19 +60,21 @@ export const SliderImage = () => {
         ))}
       </Styled.Trumbnails>
 
-      <Styled.LightBoxContainer visible={lightboxVisible}>
+      <Styled.LightBoxContainer lightBoxVisible={lightBoxVisible}>
         <Styled.CloseLightBox
-          onClick={() => setLightboxVisible(false)}
+          onClick={() => setLightBoxVisible(false)}
           src="/images/icon-close.svg"
         />
         <Styled.LightBoxImg src={imagesList[currentImageIndex]} />
         <Styled.ArrowPrevious
           onClick={handleArrowPrevious}
           src="/images/icon-previous.svg"
+          alt="previous image arrow"
         />
         <Styled.ArrowNext
           onClick={handleArrowNext}
           src="/images/icon-next.svg"
+          alt="next image arrow"
         />
 
         <Styled.Trumbnails>

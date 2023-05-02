@@ -164,6 +164,10 @@ export const AddCartButton = styled.button`
     @media ${theme.media.desktop} {
       max-width: 27rem;
       cursor: pointer;
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
   `}
 `

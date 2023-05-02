@@ -1,11 +1,14 @@
 import { Header } from './components/Header'
 import { Product } from './components/Product'
+import { CartProvider } from './contexts/CartProvider'
 
 function App() {
   return (
     <>
-      <Header />
-      <Product />
+      <CartProvider>
+        <Header />
+        <Product />
+      </CartProvider>
     </>
   )
 }
