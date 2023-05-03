@@ -21,6 +21,7 @@ const setMenuVisible = (theme) => css`
     font-size: 1.8rem;
     font-weight: 700;
     color: #000;
+    z-index: index 6;
   }
 `
 
@@ -64,7 +65,6 @@ export const Logo = styled.img``
 export const Archor = styled.a`
   ${() => css`
     font-size: 1.6rem;
-    z-index: index 6;
   `}
 `
 export const NavLinks = styled.ul`
