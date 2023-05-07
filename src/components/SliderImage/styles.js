@@ -13,7 +13,7 @@ const isActive = () => css`
   }
   &:hover {
     opacity: 1;
-    cursor: none;
+    cursor: not-allowed;
   }
 `
 const setlightBoxVisible = () => css`
@@ -39,10 +39,10 @@ export const Container = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-
-    ${lightBoxVisible && shadowLightbox()}
+    align-items: center;
 
     @media ${theme.media.laptop} {
+      ${lightBoxVisible && shadowLightbox()}
       border-radius: 2rem;
       max-width: 44.5rem;
       > ${ArrowPrevious}, > ${ArrowNext} {
