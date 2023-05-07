@@ -21,12 +21,27 @@ const setlightBoxVisible = () => css`
   visibility: visible;
 `
 
+const shadowLightbox = () => css`
+  &::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+`
+
 export const Container = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, lightBoxVisible }) => css`
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: ;
+
+    ${lightBoxVisible && shadowLightbox()}
+
     @media ${theme.media.laptop} {
       border-radius: 2rem;
       max-width: 44.5rem;
@@ -127,7 +142,7 @@ export const LightBoxContainer = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    max-width: 55rem;
+    max-width: 45rem;
     width: 100%;
 
     display: none;
@@ -138,16 +153,6 @@ export const LightBoxContainer = styled.div`
     opacity: 0;
     visibility: hidden;
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: -100%;
-      top: -50%;
-      width: 300vh;
-      height: 300vh;
-      z-index: 1;
-      background-color: rgba(0, 0, 0, 0.75);
-    }
     @media ${theme.media.laptop} {
       ${lightBoxVisible && setlightBoxVisible()}
       display:flex;
@@ -167,9 +172,6 @@ export const LightBoxContainer = styled.div`
         right: 0;
         transform: translate(50%, -50%);
       }
-    }
-    @media ${theme.media.largeDesktop} {
-      max-width: 60rem;
     }
     ${Trumbnail} {
       z-index: 3;
